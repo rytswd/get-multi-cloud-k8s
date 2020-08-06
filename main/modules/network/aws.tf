@@ -12,7 +12,7 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 }
 
-resource "aws_subnet" "subnet" {
+resource "aws_subnet" "main" {
   count = 3
 
   cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 3, count.index)
