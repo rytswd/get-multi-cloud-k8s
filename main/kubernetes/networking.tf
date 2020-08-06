@@ -1,25 +1,7 @@
-provider "aws" {
-  version = "~> 2.0"
-  region  = var.aws_region
-
-  assume_role {
-    role_arn = local.assumed_role
-  }
+resource "google_project_service" "project" {
+  project = var.gcp_project
+  service = "compute.googleapis.com"
 }
-provider "google" {
-  version = "~> 3.33.0"
-  region  = var.gcp_region
-  project = "rytswd-get-multi-cloud-k8s-v01"
-  alias   = "v01"
-}
-
-provider "google-beta" {
-  version = "~> 3.33.0"
-  region  = var.gcp_region
-  project = "rytswd-get-multi-cloud-k8s-v01"
-  alias   = "v01"
-}
-
 
 module "aws_networking" {
   source = "./modules/network"
