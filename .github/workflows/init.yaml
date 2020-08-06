@@ -52,12 +52,12 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
-      - name: Terraform Plan
+      - name: Terraform Plan - Run
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan -no-color -out t.tfplan
         continue-on-error: true
 
-      - name: Print Terraform Plan for Pull Request
+      - name: Terraform Plan - Print
         uses: actions/github-script@0.9.0
         if: github.event_name == 'pull_request'
         env:
@@ -85,6 +85,11 @@ jobs:
               body: output
             })
 
-      - name: Wrap up
+      - name: Terraform Plan - Wrap up
         run: |
           if [[ ${{ steps.plan.outcome}} == "failure" ]]; then exit 1; fi
+
+      - name: Terraform Apply
+        id: apply
+        if: github.event_name != 'pull_request'
+        run: terraform apply "t.tfplan"
