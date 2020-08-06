@@ -24,7 +24,7 @@ provider "google-beta" {
 module "aws_networking" {
   source = "./modules/network"
   providers = {
-    gcp = gcp.v01
+    google = google.v01
   }
 
   gcp_region = "europe-west2"
