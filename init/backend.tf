@@ -4,7 +4,7 @@ terraform {
     organization = "rytswd"
 
     workspaces {
-      name = "get-multi-cloud-k8s"
+      name = "get-multi-cloud-k8s-init"
     }
   }
 }
