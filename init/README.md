@@ -84,6 +84,13 @@ $ gcloud iam service-accounts keys create ~/.config/gcloud/rytswd-get-multi-clou
 ```
 
 ```bash
+$ gcloud iam service-accounts add-iam-policy-binding \
+    terraform-admin@rytswd-get-multi-cloud-k8s-v01.iam.gserviceaccount.com \
+    --member serviceAccount:terraform-admin@rytswd-get-multi-cloud-k8s-v01.iam.gserviceaccount.com \
+    --role='roles/owner'
+```
+
+```bash
 $ cat ~/.config/gcloud/rytswd-get-multi-cloud-k8s-v01.json | base64
 ```
 

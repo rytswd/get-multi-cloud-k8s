@@ -1,9 +1,4 @@
-resource "google_project_service" "project" {
-  project = var.gcp_project
-  service = "compute.googleapis.com"
-}
-
-module "aws_networking" {
+module "networking" {
   source = "./modules/network"
   providers = {
     google = google.v01
