@@ -3,13 +3,13 @@ name: Terraform Project Init
 on:
   pull_request:
     paths:
-      - /init/**
+      - init/**
   push:
     branches:
       - master
     paths:
-      - /.github/workflows/init.yaml
-      - /init/**
+      - .github/workflows/init.yaml
+      - init/**
 
 jobs:
   init:
