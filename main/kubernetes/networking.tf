@@ -1,4 +1,4 @@
-module "networking" {
+module "aws_networking" {
   source = "./modules/network"
   providers = {
     google = google.v01
