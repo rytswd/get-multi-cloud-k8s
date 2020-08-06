@@ -84,7 +84,7 @@ $ gcloud iam service-accounts keys create ~/.config/gcloud/rytswd-get-multi-clou
 ```
 
 ```bash
-$ cat ~/.config/gcloud/rytswd-get-multi-cloud-k8s-v01.json | jq -r .private_key
+$ cat ~/.config/gcloud/rytswd-get-multi-cloud-k8s-v01.json | base64
 ```
 
 ### Step 4. GitHub Secrets
