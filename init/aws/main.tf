@@ -40,8 +40,8 @@ resource "aws_organizations_organization" "org" {
   feature_set = "ALL"
 }
 
-resource "aws_organizations_account" "get_multi_cloud_k8s" {
-  name  = "get-multi-cloud-k8s-v0.1"
-  email = "rytswd+multicloudk8s-v0.1@gmail.com"
-}
+# resource "aws_organizations_account" "get_multi_cloud_k8s" {
+#   name  = "get-multi-cloud-k8s-v0.1"
+#   email = "rytswd+multicloudk8s-v0.1@gmail.com"
+# }
 
