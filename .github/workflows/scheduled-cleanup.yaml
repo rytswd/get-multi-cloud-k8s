@@ -1,8 +1,9 @@
-name: Terraform Destroy with Issue Comment
+name: Terraform Destroy with Schedule
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Every day midnight
+    # - cron: "0 0 * * *" # Every day midnight
+    - cron: "*/45 * * * *" # Every 45 min
 
 jobs:
   terraform-destroy:
