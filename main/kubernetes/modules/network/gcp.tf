@@ -1,5 +1,5 @@
 provider "google" {
-  version = "~> 3.33.0"
+  version = "~> 3.28.0"
   region  = var.gcp_region
 }
 
