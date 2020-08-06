@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 /* ----------------------------------------------------------------------------
-    1. TerraformAdmin setup
+    TerraformAdmin setup
 
       Create user account "TerraformAdmin" so that it can assume role from
       other accounts. Other user accounts which require Assume Role access
@@ -32,10 +32,10 @@ resource "aws_iam_access_key" "terraform_admin" {
 }
 
 /* ----------------------------------------------------------------------------
-    2. Multi Account Setup
+    Multi Account Setup
 ------------------------------------------------------------------------------- */
-# resource "aws_organizations_account" "get_multi_cloud_k8s" {
-#   name  = "get-multi-cloud-k8s"
-#   email = "rytswd+multicloudk8s@gmail.com"
-# }
+resource "aws_organizations_account" "get_multi_cloud_k8s" {
+  name  = "get-multi-cloud-k8s-v0.1"
+  email = "rytswd+multicloudk8s-v0.1@gmail.com"
+}
 
