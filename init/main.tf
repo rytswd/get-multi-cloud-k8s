@@ -14,7 +14,12 @@ output "aws_terraform_admin_access_key_encrypted_secret" {
 /* ----------------------------------------------------------------------------
     GCP
 ------------------------------------------------------------------------------- */
-module "gcp_init" {
-  source = "./gcp"
-}
+# NOTE: 
+#   Because creating GCP project via Terraform requires an organization, this
+#   setup is being skipped. Instead, you can use gcloud CLI to get started with
+#   the initial project setup.
+
+# module "gcp_init" {
+#   source = "./gcp"
+# }
 
