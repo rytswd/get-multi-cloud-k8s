@@ -3,13 +3,8 @@ provider "aws" {
   region  = "eu-west-2"
 }
 
-resource "aws_organizations_account" "get_multi_cloud_k8s" {
-  name  = "get-multi-cloud-k8s"
-  email = "rytswd+multicloudk8s@gmail.com"
-}
-
 /* ----------------------------------------------------------------------------
-    2. TerraformAdmin setup
+    1. TerraformAdmin setup
 
       Create user account "TerraformAdmin" so that it can assume role from
       other accounts. Other user accounts which require Assume Role access
@@ -18,7 +13,7 @@ resource "aws_organizations_account" "get_multi_cloud_k8s" {
 data "aws_iam_policy_document" "terraform_admin" {
   statement {
     effect    = "Allow"
-    actions   = ["sts:AssumeRole"]
+    actions   = ["*"]
     resources = ["*"]
   }
 }
@@ -31,3 +26,16 @@ resource "aws_iam_user_policy" "terraform_admin_assume_role" {
   user   = aws_iam_user.terraform_admin.name
   policy = data.aws_iam_policy_document.terraform_admin.json
 }
+resource "aws_iam_access_key" "terraform_admin" {
+  user    = aws_iam_user.terraform_admin.name
+  pgp_key = "keybase:rytswd"
+}
+
+/* ----------------------------------------------------------------------------
+    2. Multi Account Setup
+------------------------------------------------------------------------------- */
+# resource "aws_organizations_account" "get_multi_cloud_k8s" {
+#   name  = "get-multi-cloud-k8s"
+#   email = "rytswd+multicloudk8s@gmail.com"
+# }
+
