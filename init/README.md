@@ -66,6 +66,16 @@ $ gcloud auth application-default login
 - `AWS_SECRET_ACCESS_KEY`: AWS Secret Access Key
 - `TERRAFORM_CLOUD_INIT_API_TOKEN`: API Token for Terraform Cloud, specifically for `init` folder
 
+Terraform has 3 different API Tokens available. You must use User Token or Team Token.
+
+If you use Organization Token,you'll get an error at Terraform Plan:
+
+```
+Error: Error locking state: Error acquiring the state lock: resource not found
+```
+
+This seems to be due to the permission of the Organization Token.
+
 ## Setup Rationale
 
 To be added

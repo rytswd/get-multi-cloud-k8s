@@ -3,6 +3,7 @@ name: Terraform Project Init
 on:
   pull_request:
     paths:
+      - .github/workflows/init.yaml
       - init/**
   push:
     branches:
@@ -51,12 +52,13 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
-      - name: Terraform Plan
+      - name: Terraform Plan - Run
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan -no-color -out t.tfplan
         continue-on-error: true
 
-      - uses: actions/github-script@0.9.0
+      - name: Terraform Plan - Print
+        uses: actions/github-script@0.9.0
         if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
@@ -82,3 +84,12 @@ jobs:
               repo: context.repo.repo,
               body: output
             })
+
+      - name: Terraform Plan - Wrap up
+        run: |
+          if [[ ${{ steps.plan.outcome}} == "failure" ]]; then exit 1; fi
+
+      - name: Terraform Apply
+        id: apply
+        if: github.event_name != 'pull_request'
+        run: terraform apply "t.tfplan"
