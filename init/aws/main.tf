@@ -36,6 +36,6 @@ resource "aws_iam_access_key" "terraform_admin" {
 ------------------------------------------------------------------------------- */
 resource "aws_organizations_account" "get_multi_cloud_k8s" {
   name  = "get-multi-cloud-k8s-v0.1"
-  email = "rytswd+multicloudk8s@gmail.com"
+  email = "rytswd+multicloudk8s-v0.1@gmail.com"
 }
 
