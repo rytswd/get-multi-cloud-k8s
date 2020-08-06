@@ -53,4 +53,4 @@ jobs:
         if: steps.comvent-destroy-all.outputs.comvent != ''
         # env:
         #   TF_WORKSPACE: ${{ matrix.workspace }}
-        run: terraform destroy
+        run: terraform destroy -auto-approve
