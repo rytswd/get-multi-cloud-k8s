@@ -57,7 +57,34 @@ $ gcloud auth login
 ```
 
 ```bash
-$ gcloud auth application-default login
+$ gcloud projects create rytswd-get-multi-cloud-k8s-v01
+```
+
+```bash
+$ gcloud config configurations create rytswd-get-multi-cloud-k8s
+```
+
+```bash
+$ gcloud config set compute/zone europe-west2-a
+```
+
+```bash
+$ gcloud config set project rytswd-get-multi-cloud-k8s-v01
+```
+
+```bash
+$ gcloud iam service-accounts create terraform-admin \
+    --description="Terraform Admin Account for Terraform integration" \
+    --display-name="Terraform Admin"
+```
+
+```bash
+$ gcloud iam service-accounts keys create ~/.config/gcloud/rytswd-get-multi-cloud-k8s-v01.json \
+  --iam-account terraform-admin@rytswd-get-multi-cloud-k8s-v01.iam.gserviceaccount.com
+```
+
+```bash
+$ cat ~/.config/gcloud/rytswd-get-multi-cloud-k8s-v01.json | jq -r .private_key
 ```
 
 ### Step 4. GitHub Secrets
