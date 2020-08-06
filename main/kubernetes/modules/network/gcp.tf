@@ -9,7 +9,7 @@ resource "google_compute_network" "multi_cloud_gcp" {
 }
 
 resource "google_compute_subnetwork" "multi_cloud_gcp_subnet" {
-  name          = "multi_cloud_gcp_subnet"
+  name          = "multi-cloud-gcp-subnet"
   ip_cidr_range = var.gcp_cidr
-  network       = google_compute_network.main.self_link
+  network       = google_compute_network.multi_cloud_gcp.self_link
 }

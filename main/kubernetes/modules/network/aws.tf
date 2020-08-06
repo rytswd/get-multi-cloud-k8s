@@ -15,7 +15,7 @@ resource "aws_vpc" "multi_cloud_aws" {
 resource "aws_subnet" "multi_cloud_aws" {
   count = 3
 
-  cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 3, count.index)
+  cidr_block        = cidrsubnet(aws_vpc.multi_cloud_aws.cidr_block, 3, count.index)
   availability_zone = element(data.aws_availability_zones.available.names, count.index)
-  vpc_id            = aws_vpc.main.id
+  vpc_id            = aws_vpc.multi_cloud_aws.id
 }
