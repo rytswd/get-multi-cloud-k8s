@@ -7,12 +7,12 @@ provider "aws" {
   }
 }
 provider "google" {
-  version = "~> 2.10"
+  version = "~> 3.33.0"
   region  = var.gcp_region
 }
 
 provider "google-beta" {
-  version = "~> 2.10"
+  version = "~> 3.33.0"
   region  = var.gcp_region
 }
 
