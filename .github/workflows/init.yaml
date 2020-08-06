@@ -84,3 +84,6 @@ jobs:
               repo: context.repo.repo,
               body: output
             })
+      - name: Wrap up
+        run: |
+          if [[ ${{ steps.plan.outcome}} == "failure" ]]; then return 1; fi
