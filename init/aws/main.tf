@@ -1,6 +1,6 @@
 provider "aws" {
   version = "~> 2.0"
-  region  = "eu-west-2"
+  region  = "eu-west-2" # TODO: Take this from env
 }
 
 /* ----------------------------------------------------------------------------

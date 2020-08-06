@@ -5,8 +5,10 @@ on:
     paths:
       - /init/**
   push:
-    paths:
+    branches:
       - master
+    paths:
+      - /init/**
 
 jobs:
   init:
