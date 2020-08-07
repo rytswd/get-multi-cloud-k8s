@@ -1,8 +1,3 @@
-provider "aws" {
-  version = "~> 2.16"
-  region  = var.aws_region
-}
-
 data "aws_availability_zones" "available" {}
 
 resource "aws_vpc" "multi_cloud_aws" {
