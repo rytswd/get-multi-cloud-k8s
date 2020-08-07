@@ -11,11 +11,14 @@ provider "google" {
 #   org_id          = local.org_id
 # }
 
-resource "google_project_service" "compute" {
-  project = var.gcp_project
-  service = "compute.googleapis.com"
-}
-resource "google_project_service" "cloudresource" {
-  project = var.gcp_project
-  service = "cloudresourcemanager.googleapis.com"
+resource "google_project_service" "service" {
+  for_each = toset([
+    "iam.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+  ])
+
+  service = each.key
+
+  project            = var.gcp_project
+  disable_on_destroy = false
 }
