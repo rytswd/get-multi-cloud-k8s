@@ -151,6 +151,9 @@ $ gcloud projects add-iam-policy-binding get-multi-cloud-k8s-admin \
 $ gcloud projects add-iam-policy-binding rytswd-get-multi-cloud-k8s-v01 \
     --member=serviceAccount:terraform-admin@get-multi-cloud-k8s-admin.iam.gserviceaccount.com \
     --role=roles/editor
+$ gcloud projects add-iam-policy-binding rytswd-get-multi-cloud-k8s-v02 \
+    --member=serviceAccount:terraform-admin@get-multi-cloud-k8s-admin.iam.gserviceaccount.com \
+    --role=roles/editor
 ```
 
 ## Step 3. Add credentials to GitHub secrets

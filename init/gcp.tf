@@ -46,7 +46,7 @@ provider "google" {
   project = local.project_v02
   alias   = "v02"
 }
-module "gcp_init" {
+module "gcp_v02" {
   source = "./gcp"
   providers = {
     google = google.v02
