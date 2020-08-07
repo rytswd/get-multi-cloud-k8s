@@ -94,11 +94,22 @@ $ gcloud auth login
 ```
 
 ```bash
-# With your account login above, create a new project.
+# With your account login above, create a new project for deployment.
 #
-# Here, I'm calling it `rytswd-get-multi-cloud-k8s-v01`. This needs to be
-# universally unique.
+# Here, I'm calling it `rytswd-get-multi-cloud-k8s-v01`. This is the project
+# I'm deploying my system in.
 $ gcloud projects create rytswd-get-multi-cloud-k8s-v01
+# We create a project here, but won't do much with it for now.
+```
+
+```bash
+# Also, let's create another project `get-multi-cloud-k8s-admin`. This is the
+# project Terraform Admin Service Account will live in. All the entitlements
+# around Terraform can then be managed by this project, and this allows clear
+# Terraform scope management, and also becomes a good candidate for storing
+# state data.
+# This setup also allows removing Terraform dependency easily if necessary.
+$ gcloud projects create get-multi-cloud-k8s-admin
 ```
 
 ```bash
@@ -108,17 +119,10 @@ $ gcloud projects create rytswd-get-multi-cloud-k8s-v01
 # reference, region, etc. into this configuration. You can reuse the earlier
 # configuration instead, but this makes it absolutely clear that permission
 # is managed separately.
-$ gcloud config configurations create rytswd-get-multi-cloud-k8s
-```
-
-```bash
-# Set zone to your configuration.
+$ gcloud config configurations create get-multi-cloud-k8s-admin
 $ gcloud config set compute/zone europe-west2-a
-```
-
-```bash
-# Set the project you created earlier to your configuration.
-$ gcloud config set project rytswd-get-multi-cloud-k8s-v01
+$ gcloud config set project get-multi-cloud-k8s-admin
+$ gcloud auth login
 ```
 
 ```bash
@@ -135,13 +139,16 @@ $ gcloud iam service-accounts create terraform-admin \
 # resources.
 #
 # You should be tuning the entitlement levels according to your needs. Here,
-# I'm taking a shortcut and assigning `roles/owner`.
-$ gcloud iam service-accounts add-iam-policy-binding \
-    terraform-admin@rytswd-get-multi-cloud-k8s-v01.iam.gserviceaccount.com \
-    --member serviceAccount:terraform-admin@rytswd-get-multi-cloud-k8s-v01.iam.gserviceaccount.com \
-    --role='roles/owner'
+# I'm taking a shortcut and assigning `roles/editor`. Note that `roles/owner`
+# canont be assigned by gcloud command.
+$ gcloud projects add-iam-policy-binding get-multi-cloud-k8s-admin \
+    --member=serviceAccount:terraform-admin@get-multi-cloud-k8s-admin.iam.gserviceaccount.com \
+    --role=roles/editor
 
-## TODO: This seems to not change anything. Check
+# Also, run a similar command, targetting the deployment target projects.
+$ gcloud projects add-iam-policy-binding rytswd-get-multi-cloud-k8s-v01 \
+    --member=serviceAccount:terraform-admin@get-multi-cloud-k8s-admin.iam.gserviceaccount.com \
+    --role=roles/editor
 ```
 
 ## Step 3. Add credentials to GitHub secrets
@@ -151,13 +158,13 @@ $ gcloud iam service-accounts add-iam-policy-binding \
 #
 # This will be used by Terraform, so that Terraform will act as the newly
 # created "terraform-admin" Service Account.
-$ gcloud iam service-accounts keys create ~/.config/gcloud/rytswd-get-multi-cloud-k8s-v01.json \
-  --iam-account terraform-admin@rytswd-get-multi-cloud-k8s-v01.iam.gserviceaccount.com
+$ gcloud iam service-accounts keys create ~/.config/gcloud/get-multi-cloud-k8s-admin.json \
+  --iam-account terraform-admin@get-multi-cloud-k8s-admin.iam.gserviceaccount.com
 ```
 
 ```bash
 # Encode the JSON string with base64.
-$ cat ~/.config/gcloud/rytswd-get-multi-cloud-k8s-v01.json | base64
+$ cat ~/.config/gcloud/get-multi-cloud-k8s-admin.json | base64
 ```
 
 You have completed the setup, so go to GitHub repo, and add the last Base64 encoded JSON as secret.
