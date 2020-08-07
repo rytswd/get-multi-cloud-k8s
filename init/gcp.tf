@@ -19,7 +19,7 @@ resource "google_project_service" "service" {
 
   service = each.key
 
-  project            = "rytswd-get-multi-cloud-k8s-v01"
+  project            = "get-multi-cloud-k8s-admin"
   disable_on_destroy = false
 }
 
