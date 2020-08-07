@@ -100,6 +100,8 @@ $ gcloud auth login
 # I'm deploying my system in.
 $ gcloud projects create rytswd-get-multi-cloud-k8s-v01
 # We create a project here, but won't do much with it for now.
+# Also creating another v02.
+$ gcloud projects create rytswd-get-multi-cloud-k8s-v02
 ```
 
 ```bash
