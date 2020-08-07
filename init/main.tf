@@ -18,8 +18,10 @@ output "aws_terraform_admin_access_key_encrypted_secret" {
 #   Because creating GCP project via Terraform requires an organization, this
 #   setup is being skipped. Instead, you can use gcloud CLI to get started with
 #   the initial project setup.
+#   Inside this module, it is only setting the project APIs.
+module "gcp_init" {
+  source = "./gcp"
 
-# module "gcp_init" {
-#   source = "./gcp"
-# }
+  gcp_project = "get-multi-cloud-k8s-v01"
+}
 

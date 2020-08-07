@@ -5,3 +5,7 @@ locals {
   gcp_admin_project   = "upsidr-terraform-admin"
   defalut_gcp_regions = "europe-west2"
 }
+
+variable "gcp_project" {
+  default = "get-multi-cloud-k8s-v01"
+}
