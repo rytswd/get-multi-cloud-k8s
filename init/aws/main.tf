@@ -10,6 +10,11 @@ provider "aws" {
       other accounts. Other user accounts which require Assume Role access
       should use separate setup.
 ------------------------------------------------------------------------------- */
+resource "aws_iam_user" "terraform_admin" {
+  name = "TerraformAdmin"
+  path = "/"
+}
+
 data "aws_iam_policy_document" "terraform_admin" {
   statement {
     effect    = "Allow"
@@ -17,12 +22,8 @@ data "aws_iam_policy_document" "terraform_admin" {
     resources = ["*"]
   }
 }
-resource "aws_iam_user" "terraform_admin" {
-  name = "TerraformAdmin"
-  path = "/"
-}
 resource "aws_iam_user_policy" "terraform_admin_assume_role" {
-  name   = "AssumeRoleForTerraformAdmin"
+  name   = "TerraformAdminAccess"
   user   = aws_iam_user.terraform_admin.name
   policy = data.aws_iam_policy_document.terraform_admin.json
 }
