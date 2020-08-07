@@ -115,6 +115,25 @@ $ gcloud projects create get-multi-cloud-k8s-admin
 ```
 
 ```bash
+# Enable billing for all projects
+$ gcloud beta billing accounts list
+
+ACCOUNT_ID            NAME                OPEN  MASTER_ACCOUNT_ID
+0X0X0X-0X0X0X-0X0X0X  My Billing Account
+
+# NOTE: If you are using a personal email address rather than G Suite account,
+#       you may run into "Cloud billing quota exceeded" error.
+#       It seems you can only have 3 projects mapped to one billing account.
+
+$ gcloud beta billing projects link rytswd-get-multi-cloud-k8s-v01 \
+  --billing-account 0X0X0X-0X0X0X-0X0X0X
+$ gcloud beta billing projects link rytswd-get-multi-cloud-k8s-v02 \
+  --billing-account 0X0X0X-0X0X0X-0X0X0X
+$ gcloud beta billing projects link get-multi-cloud-k8s-admin \
+  --billing-account 0X0X0X-0X0X0X-0X0X0X
+```
+
+```bash
 # Create another gcloud configuration for your machine environment.
 #
 # This is different from the first command, because I will be adding project
