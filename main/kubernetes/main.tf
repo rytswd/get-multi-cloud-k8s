@@ -11,3 +11,23 @@ module "networking" {
   aws_region = "eu-west-2"
   aws_cidr   = "10.22.0.0/16"
 }
+
+module "vpn" {
+  source = "./modules/vpn"
+  providers = {
+    aws         = aws.v01
+    google      = google.v01
+    google-beta = google-beta.v01
+  }
+
+  aws_region  = "eu-west-2"
+  aws_vpc     = module.network.aws_vpc
+  aws_subnets = module.network.aws_subnets
+  aws_bgp_asn = "64321"
+
+  gcp_region  = "europe-west2"
+  gcp_vpc     = module.network.gcp_vpc
+  gcp_bgp_asn = "64567"
+}
+
+
