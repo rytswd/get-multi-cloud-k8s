@@ -3,6 +3,9 @@
 ------------------------------------------------------------------------------- */
 module "aws_init" {
   source = "./aws"
+
+  project_name  = "rytswd-get-multi-cloud-k8s-v0.1"
+  project_email = "rytswd+multicloud-k8s-v0.1@gmail.com"
 }
 output "aws_terraform_admin_access_key_id" {
   value = module.aws_init.terraform_admin_access_key_id
