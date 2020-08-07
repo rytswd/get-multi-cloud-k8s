@@ -1,10 +1,11 @@
 provider "aws" {
   version = "~> 2.0"
   region  = var.aws_region
+  alias   = "v01"
 
-  # assume_role {
-  #   role_arn = local.assumed_role
-  # }
+  assume_role {
+    role_arn = local.aws_account_role
+  }
 }
 
 provider "google" {

@@ -2,6 +2,7 @@ module "networking" {
   source = "./modules/network"
   providers = {
     google = google.v01
+    aws    = aws.v01
   }
 
   gcp_region = "europe-west2"
