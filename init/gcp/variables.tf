@@ -7,5 +7,5 @@ locals {
 }
 
 variable "gcp_project" {
-  default = "get-multi-cloud-k8s-v01"
+  default = "rytswd-get-multi-cloud-k8s-v01"
 }

@@ -22,6 +22,6 @@ output "aws_terraform_admin_access_key_encrypted_secret" {
 module "gcp_init" {
   source = "./gcp"
 
-  gcp_project = "get-multi-cloud-k8s-v01"
+  gcp_project = "rytswd-get-multi-cloud-k8s-v01"
 }
 
