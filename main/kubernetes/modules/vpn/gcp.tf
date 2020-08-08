@@ -1,3 +1,7 @@
+provider "google-beta" {
+  alias = "vpn"
+}
+
 resource "google_compute_router" "main" {
   name    = "router-main"
   network = var.gcp_vpc

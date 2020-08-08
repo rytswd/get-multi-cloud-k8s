@@ -15,9 +15,9 @@ module "networking" {
 module "vpn" {
   source = "./modules/vpn"
   providers = {
-    aws         = aws.v01
-    google      = google.v01
-    google-beta = google-beta.v01
+    aws             = aws.v01
+    google          = google.v01
+    google-beta.vpn = google-beta.v01
   }
 
   aws_region  = "eu-west-2"
