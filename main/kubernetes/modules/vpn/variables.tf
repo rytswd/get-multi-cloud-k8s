@@ -1,5 +1,5 @@
 
-variable "link_local_cidr_base" {
+variable "vpn_cidr_base" {
   description = "IP CIDR for VPN Tunnels. This must be a link-local IP (169.254.0.0/16), and for further processing, it needs to be /26."
 }
 

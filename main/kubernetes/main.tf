@@ -20,8 +20,8 @@ module "vpn" {
     google-beta.vpn = google-beta.v01
   }
 
-  link_local_cidr_base = "169.254.10.0/26"
-  preshared_key        = "BHVzR6Xj3V1gQEOdJm5RMMGX6/7QataZ"
+  vpn_cidr_base = "169.254.10.0/26"
+  preshared_key = "BHVzR6Xj3V1gQEOdJm5RMMGX6/7QataZ"
 
   aws_region  = "eu-west-2"
   aws_vpc     = module.networking.aws_vpc
