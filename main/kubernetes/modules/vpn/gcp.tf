@@ -19,14 +19,14 @@ resource "google_compute_router" "main" {
 }
 
 resource "google_compute_ha_vpn_gateway" "target_gateway" {
-  provider = "google-beta.vpn"
+  provider = google-beta.vpn
   name     = "vpn-to-aws"
   network  = var.gcp_vpc
 }
 
 
 resource "google_compute_external_vpn_gateway" "aws_gateway" {
-  provider        = "google-beta.vpn"
+  provider        = google-beta.vpn
   name            = "aws-gateway"
   redundancy_type = "FOUR_IPS_REDUNDANCY"
   description     = "VPN gateway on AWS side"
@@ -53,7 +53,7 @@ resource "google_compute_external_vpn_gateway" "aws_gateway" {
 }
 
 resource "google_compute_vpn_tunnel" "gcp_to_aws_1" {
-  provider                        = "google-beta.vpn"
+  provider                        = google-beta.vpn
   name                            = "vpn-tunnel-to-aws-ha1"
   vpn_gateway                     = google_compute_ha_vpn_gateway.target_gateway.self_link
   shared_secret                   = aws_vpn_connection.cx_1.tunnel1_preshared_key
@@ -65,7 +65,7 @@ resource "google_compute_vpn_tunnel" "gcp_to_aws_1" {
 }
 
 resource "google_compute_vpn_tunnel" "gcp_to_aws_2" {
-  provider                        = "google-beta.vpn"
+  provider                        = google-beta.vpn
   name                            = "vpn-tunnel-to-aws-ha2"
   vpn_gateway                     = google_compute_ha_vpn_gateway.target_gateway.self_link
   shared_secret                   = aws_vpn_connection.cx_1.tunnel2_preshared_key
@@ -77,7 +77,7 @@ resource "google_compute_vpn_tunnel" "gcp_to_aws_2" {
 }
 
 resource "google_compute_vpn_tunnel" "gcp_to_aws_3" {
-  provider                        = "google-beta.vpn"
+  provider                        = google-beta.vpn
   name                            = "vpn-tunnel-to-aws-ha3"
   vpn_gateway                     = google_compute_ha_vpn_gateway.target_gateway.self_link
   shared_secret                   = aws_vpn_connection.cx_2.tunnel1_preshared_key
@@ -89,7 +89,7 @@ resource "google_compute_vpn_tunnel" "gcp_to_aws_3" {
 }
 
 resource "google_compute_vpn_tunnel" "gcp_to_aws_4" {
-  provider                        = "google-beta.vpn"
+  provider                        = google-beta.vpn
   name                            = "vpn-tunnel-to-aws-ha4"
   vpn_gateway                     = google_compute_ha_vpn_gateway.target_gateway.self_link
   shared_secret                   = aws_vpn_connection.cx_2.tunnel2_preshared_key
@@ -163,4 +163,3 @@ resource "google_compute_router_peer" "gcp_to_aws_4" {
   advertised_route_priority = 100
   interface                 = google_compute_router_interface.gcp_to_aws_4.name
 }
-
