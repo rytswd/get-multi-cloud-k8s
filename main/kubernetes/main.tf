@@ -21,7 +21,7 @@ module "vpn" {
   }
 
   vpn_cidr_base = "169.254.10.0/26"
-  preshared_key = "BHVzR6Xj3V1gQEOdJm5RMMGX6/7QataZ"
+  preshared_key = "Yw9hTWYWm5AO5RuEvGe4OAAfVUdi0gil"
 
   aws_region  = "eu-west-2"
   aws_vpc     = module.networking.aws_vpc
