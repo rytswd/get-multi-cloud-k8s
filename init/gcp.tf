@@ -7,7 +7,6 @@
 
 
 provider "google" {
-  version = "~> 3.33.0"
   region  = var.gcp_region
   project = "get-multi-cloud-k8s-admin"
 }
