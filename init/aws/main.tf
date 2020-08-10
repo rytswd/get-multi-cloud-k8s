@@ -37,8 +37,8 @@ resource "aws_organizations_organization" "org" {
   feature_set = "ALL"
 }
 
-resource "aws_organizations_account" "account" {
-  name  = var.project_name
-  email = var.project_email
+resource "aws_organizations_account" "v01" {
+  name  = var.project_name_v01
+  email = var.project_email_v01
 }
 
