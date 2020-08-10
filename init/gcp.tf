@@ -13,6 +13,7 @@ provider "google" {
 resource "google_project_service" "admin" {
   for_each = toset([
     "compute.googleapis.com",
+    "container.googleapis.com",
     "cloudresourcemanager.googleapis.com",
   ])
 
@@ -30,6 +31,7 @@ resource "google_project_service" "admin" {
 resource "google_project_service" "v01" {
   for_each = toset([
     "compute.googleapis.com",
+    "container.googleapis.com",
     "cloudresourcemanager.googleapis.com",
   ])
 
@@ -46,6 +48,7 @@ resource "google_project_service" "v01" {
 resource "google_project_service" "v02" {
   for_each = toset([
     "compute.googleapis.com",
+    "container.googleapis.com",
     "cloudresourcemanager.googleapis.com",
   ])
 
