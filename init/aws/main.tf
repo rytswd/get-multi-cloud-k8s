@@ -27,10 +27,6 @@ resource "aws_iam_user_policy" "terraform_admin_assume_role" {
 #   user    = aws_iam_user.terraform_admin.name
 #   pgp_key = "keybase:rytswd"
 # }
-resource "aws_iam_access_key" "temp" {
-  user    = aws_iam_user.terraform_admin.name
-  pgp_key = "keybase:rytswd"
-}
 
 /* ----------------------------------------------------------------------------
     Multi Account Setup
