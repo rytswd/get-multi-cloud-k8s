@@ -26,11 +26,11 @@ module "vpn" {
   aws_region  = "eu-west-2"
   aws_vpc     = module.networking.aws_vpc
   aws_subnets = module.networking.aws_subnets
-  aws_bgp_asn = "64321"
+  aws_bgp_asn = "65010"
 
   gcp_region  = "europe-west2"
   gcp_vpc     = module.networking.gcp_vpc
-  gcp_bgp_asn = "64567"
+  gcp_bgp_asn = "65020"
 }
 
 
