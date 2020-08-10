@@ -19,6 +19,10 @@ variable "aws_account" {
   default     = "953930786689"
 }
 
+variable "aws_cidr" {
+  default = "10.22.0.0/16"
+}
+
 /* ----------------------------------------------------------------------------
     GCP
 
@@ -37,6 +41,9 @@ variable "gcp_project" {
   default = "rytswd-get-multi-cloud-k8s-v01"
 }
 
+variable "gcp_cidr" {
+  default = "10.12.0.0/16"
+}
 
 #* ---------------------------------------------------------------------------- *#
 #     Computed values below
