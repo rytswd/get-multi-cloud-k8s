@@ -33,7 +33,9 @@ module "vpn" {
   gcp_bgp_asn = "65020"
 }
 
-data "google_compute_zones" "available" {}
+data "google_compute_zones" "available" {
+  provider = google.v01
+}
 
 module "gke" {
   source = "terraform-google-modules/kubernetes-engine/google"
