@@ -39,7 +39,7 @@ This repository setup assumes the following accounts:
 
 _To be added_
 
-## Step 2. + Step 3. for AWS
+## AWS: Step 2. + Step 3.
 
 <details>
 <summary>Expand for detailed steps</summary>
@@ -67,7 +67,7 @@ Secrets need to be added with the following names:
 
 </details>
 
-## Step 2. + Step 3. for GCP
+## GCP: Step 2. + Step 3.
 
 <details>
 <summary>Expand for detailed steps</summary>
@@ -200,7 +200,7 @@ Secret needs to be added with the following name:
 
 </details>
 
-## Step 2. + Step 3. for Terraform Cloud
+## Terraform Cloud: Step 2. + Step 3.
 
 <details>
 <summary>Expand for detailed steps</summary>
