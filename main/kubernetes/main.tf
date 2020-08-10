@@ -33,6 +33,7 @@ module "vpn" {
   gcp_bgp_asn = "65020"
 }
 
+data "google_compute_zones" "available" {}
 
 module "gke" {
   source = "terraform-google-modules/kubernetes-engine/google"
@@ -44,7 +45,7 @@ module "gke" {
   project_id = var.gcp_project
   name       = "kubernetes-for-v01"
   region     = var.gcp_region
-  zones      = var.gcp_zones
+  zones      = data.google_compute_zones.available.names
 
   network    = module.networking.gcp_vpc
   subnetwork = var.gcp_cidr
