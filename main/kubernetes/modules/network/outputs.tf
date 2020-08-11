@@ -9,3 +9,7 @@ output "aws_subnets" {
 output "gcp_vpc" {
   value = google_compute_network.multi_cloud_gcp.self_link
 }
+
+output "gcp_subnet" {
+  value = google_compute_subnetwork.multi_cloud_gcp_subnet.name
+}

@@ -47,7 +47,7 @@ module "gke" {
 
   gcp_region = var.gcp_region
   gcp_vpc    = module.networking.gcp_vpc
-  gcp_subnet = var.gcp_cidr
+  gcp_subnet = module.networking.gcp_subnet
 
   gcp_cluster_name = "kubernetes-v01"
   gcp_pod_ip_cidr  = var.gcp_pod_ip_cidr
