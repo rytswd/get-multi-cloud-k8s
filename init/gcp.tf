@@ -5,11 +5,15 @@
 #
 #   Inside this module, it is only setting the project APIs.
 
-
 provider "google" {
   region  = var.gcp_region
   project = "get-multi-cloud-k8s-admin"
 }
+
+/* ----------------------------------------------------------------------------
+    GCP
+      For get-multi-cloud-k8s-admin
+------------------------------------------------------------------------------- */
 resource "google_project_service" "admin" {
   for_each = toset([
     "compute.googleapis.com",
@@ -22,7 +26,6 @@ resource "google_project_service" "admin" {
   project            = "get-multi-cloud-k8s-admin"
   disable_on_destroy = false
 }
-
 
 /* ----------------------------------------------------------------------------
     GCP
