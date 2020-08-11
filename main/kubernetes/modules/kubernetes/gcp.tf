@@ -2,7 +2,9 @@ resource "google_container_cluster" "cluster" {
   name     = var.gcp_cluster_name
   location = var.gcp_region
 
-  # Remove default node pool immediately after 
+  min_master_version = var.gcp_kubernetes_min_version
+
+  # Remove default node pool immediately after
   remove_default_node_pool = true
   initial_node_count       = 1
 
@@ -33,6 +35,11 @@ resource "google_container_node_pool" "n1_preemptible_pool" {
     min_node_count = 1
     max_node_count = 4
   }
+
+  management {
+    auto_repair  = true
+    auto_upgrade = true
+  }
 }
 
 resource "google_container_node_pool" "shared_e2_preemptible_pool" {
@@ -47,5 +54,10 @@ resource "google_container_node_pool" "shared_e2_preemptible_pool" {
   node_config {
     preemptible  = true
     machine_type = "e2-medium"
+  }
+
+  management {
+    auto_repair  = true
+    auto_upgrade = true
   }
 }

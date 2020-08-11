@@ -33,10 +33,6 @@ module "vpn" {
   gcp_bgp_asn = "65020"
 }
 
-data "google_compute_zones" "available" {
-  provider = google.v01
-}
-
 module "gke" {
   source = "./modules/kubernetes"
   providers = {
@@ -49,14 +45,19 @@ module "gke" {
   gcp_vpc    = module.networking.gcp_vpc
   gcp_subnet = module.networking.gcp_subnet
 
-  gcp_cluster_name = "kubernetes-v01"
-  gcp_pod_ip_cidr  = var.gcp_pod_ip_cidr
-  gcp_svc_ip_cidr  = var.gcp_svc_ip_cidr
+  gcp_cluster_name           = "kubernetes-v01"
+  gcp_pod_ip_cidr            = var.gcp_pod_ip_cidr
+  gcp_svc_ip_cidr            = var.gcp_svc_ip_cidr
+  gcp_kubernetes_min_version = "1.17.9-gke.1500"
 
   enable_n1_preemptible_pool        = false
   enable_e2_shared_preemptible_pool = true
 }
 
+
+# data "google_compute_zones" "available" {
+#   provider = google.v01
+# }
 # module "gke" {
 #   source = "terraform-google-modules/kubernetes-engine/google"
 #   providers = {
