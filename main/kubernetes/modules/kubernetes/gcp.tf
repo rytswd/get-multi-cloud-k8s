@@ -28,6 +28,11 @@ resource "google_container_node_pool" "n1_preemptible_pool" {
     preemptible  = true
     machine_type = "n1-standard-1"
   }
+
+  autoscaling {
+    min_node_count = 1
+    max_node_count = 4
+  }
 }
 
 resource "google_container_node_pool" "shared_e2_preemptible_pool" {
