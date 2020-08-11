@@ -6,8 +6,8 @@ resource "google_container_cluster" "cluster" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  network    = var.gcp_vpc
-  subnetwork = var.gcp_subnet
+  network = var.gcp_vpc
+  #   subnetwork = var.gcp_subnet
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block  = var.gcp_pod_ip_cidr
