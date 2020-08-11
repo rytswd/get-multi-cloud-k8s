@@ -10,8 +10,8 @@ resource "google_container_cluster" "cluster" {
   subnetwork = var.gcp_subnet
 
   ip_allocation_policy {
-    cluster_ipv4_cidr_block  = "/16"
-    services_ipv4_cidr_block = "/22"
+    cluster_ipv4_cidr_block  = var.gcp_pod_ip_cidr
+    services_ipv4_cidr_block = var.gcp_svc_ip_cidr
   }
 }
 

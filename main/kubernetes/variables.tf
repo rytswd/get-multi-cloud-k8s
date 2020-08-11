@@ -44,6 +44,13 @@ variable "gcp_project" {
 variable "gcp_cidr" {
   default = "10.12.0.0/16"
 }
+variable "gcp_pod_ip_cidr" {
+  default = "10.13.0.0/16"
+}
+variable "gcp_svc_ip_cidr" {
+  default = "10.14.0.0/16"
+}
+
 
 #* ---------------------------------------------------------------------------- *#
 #     Computed values below

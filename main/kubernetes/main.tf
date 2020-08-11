@@ -50,6 +50,8 @@ module "gke" {
   gcp_subnet = var.gcp_cidr
 
   gcp_cluster_name = "kubernetes-v01"
+  gcp_pod_ip_cidr  = var.gcp_pod_ip_cidr
+  gcp_svc_ip_cidr  = var.gcp_svc_ip_cidr
 
   enable_n1_preemptible_pool        = false
   enable_e2_shared_preemptible_pool = true
