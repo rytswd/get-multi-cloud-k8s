@@ -37,6 +37,24 @@ data "google_compute_zones" "available" {
   provider = google.v01
 }
 
+module "gke" {
+  source = "./modules/kubernetes"
+  providers = {
+    aws             = aws.v01
+    google          = google.v01
+    google-beta.vpn = google-beta.v01
+  }
+
+  gcp_region = var.gcp_region
+  gcp_vpc    = module.networking.gcp_vpc
+  gcp_subnet = var.gcp_cidr
+
+  gcp_cluster_name = "kubernetes-v01"
+
+  enable_n1_preemptible_pool        = false
+  enable_e2_shared_preemptible_pool = true
+}
+
 # module "gke" {
 #   source = "terraform-google-modules/kubernetes-engine/google"
 #   providers = {
