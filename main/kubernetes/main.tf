@@ -33,7 +33,7 @@ module "vpn" {
   gcp_bgp_asn = "65020"
 }
 
-module "gke" {
+module "kubernetes" {
   source = "./modules/kubernetes"
   providers = {
     aws             = aws.v01
