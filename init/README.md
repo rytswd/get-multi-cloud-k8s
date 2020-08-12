@@ -63,6 +63,7 @@ Secrets need to be added with the following names:
 - `AWS_SECRET_ACCESS_KEY`  
   This should be set to the generated key like `w0vhCasBSmUl8roC/zZKa/ti/CE3Eu+MHqM+vOga`
 
+**_NOTE_**: _These keys were once real keys, but have been revoked. They are meant for demo purpose only, DO NOT share your keys like this._  
 **_NOTE_**: _These should be replaced with another key. It will be discussed at Step 5._
 
 </details>
