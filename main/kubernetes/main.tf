@@ -41,14 +41,19 @@ module "kubernetes" {
     google-beta.vpn = google-beta.v01
   }
 
+  aws_cluster_name    = "kubernetes-v01-eks"
+  aws_cluster_version = "1.16"
+  aws_vpc             = module.networking.aws_vpc
+  aws_subnets         = module.networking.aws_subnets
+
   gcp_region = var.gcp_region
   gcp_vpc    = module.networking.gcp_vpc
   gcp_subnet = module.networking.gcp_subnet
 
-  gcp_cluster_name           = "kubernetes-v01"
+  gcp_cluster_name           = "kubernetes-v01-gke"
+  gcp_kubernetes_min_version = "1.16.13-gke.1"
   gcp_pod_ip_cidr            = var.gcp_pod_ip_cidr
   gcp_svc_ip_cidr            = var.gcp_svc_ip_cidr
-  gcp_kubernetes_min_version = "1.16.13-gke.1"
 
   enable_n1_preemptible_pool        = false
   enable_e2_shared_preemptible_pool = true

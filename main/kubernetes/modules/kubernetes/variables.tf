@@ -1,4 +1,9 @@
 
+variable "aws_cluster_name" {}
+variable "aws_cluster_version" {}
+variable "aws_vpc" {}
+variable "aws_subnets" {}
+
 variable "gcp_region" {}
 variable "gcp_subnet" {}
 variable "gcp_vpc" {}
