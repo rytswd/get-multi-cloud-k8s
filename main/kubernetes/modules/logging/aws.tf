@@ -2,7 +2,7 @@ resource "aws_flow_log" "flow_log_to_s3" {
   log_destination      = aws_s3_bucket.vpc_flow_log.arn
   log_destination_type = "s3"
   traffic_type         = "ALL"
-  vpc_id               = var.vpc_id
+  vpc_id               = var.aws_vpc
 }
 
 resource "aws_s3_bucket" "vpc_flow_log" {
@@ -13,7 +13,7 @@ resource "aws_flow_log" "vpc_flow_log" {
   iam_role_arn    = aws_iam_role.vpc_flow_log.arn
   log_destination = aws_cloudwatch_log_group.vpc_flow_log.arn
   traffic_type    = "ALL"
-  vpc_id          = var.vpc_id
+  vpc_id          = var.aws_vpc
 }
 
 resource "aws_cloudwatch_log_group" "vpc_flow_log" {
