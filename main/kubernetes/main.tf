@@ -12,6 +12,17 @@ module "networking" {
   gcp_cidr   = var.gcp_cidr
 }
 
+module "logging" {
+  source = "./modules/logging"
+  providers = {
+    aws    = aws.v01
+    google = google.v01
+  }
+
+  aws_vpc         = module.networking.aws_vpc
+  aws_bucket_name = "rytswd-get-multi-cloud-k8s-v01-vpc-log"
+}
+
 module "vpn" {
   source = "./modules/vpn"
   providers = {
