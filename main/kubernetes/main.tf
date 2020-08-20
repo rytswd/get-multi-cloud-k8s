@@ -74,18 +74,21 @@ module "kubernetes" {
 
 # ---
 
-# module "admin_assumable_role" {
-#   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-#   version = "2.18.0"
+module "admin_assumable_role" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
+  version = "2.18.0"
+  providers = {
+    aws = aws.v01
+  }
 
-#   role_name = "admin"
-#   role_path = "/"
+  role_name = local.aws_admin_role_name
+  role_path = "/"
 
-#   create_role         = true
-#   attach_admin_policy = true
-#   role_requires_mfa   = false
+  create_role         = true
+  attach_admin_policy = true
+  role_requires_mfa   = false
 
-#   trusted_role_arns = [
-#     local.iam_account_arn,
-#   ]
-# }
+  trusted_role_arns = [
+    local.aws_account_iam_arn,
+  ]
+}
