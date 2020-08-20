@@ -1,0 +1,93 @@
+name: Terraform for IAM Setup
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/main-iam.yaml
+      - main/iam/**
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/main-iam.yaml
+      - main/iam/**
+
+jobs:
+  iam-setup:
+    name: Terraform for IAM Setup
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      TF_VERSION: 0.13.0
+    defaults:
+      run:
+        working-directory: main/kubernetes
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+          cli_config_credentials_token: ${{ secrets.TERRAFORM_CLOUD_INIT_API_TOKEN }}
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: "latest"
+          project_id: rytswd-get-multi-cloud-k8s-iam
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt
+        continue-on-error: true
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Terraform Plan - Run
+        id: plan
+        run: terraform plan -no-color -out t.tfplan
+        continue-on-error: true
+
+      - name: Terraform Plan - Print
+        uses: actions/github-script@0.9.0
+        if: github.event_name == 'pull_request'
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖${{ steps.validate.outputs.stdout }}
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+
+            <details><summary>Show Plan</summary>
+
+            \`\`\`${process.env.PLAN}\`\`\`
+
+            </details>
+
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
+              
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
+      - name: Terraform Plan - Wrap up
+        run: |
+          if [[ ${{ steps.plan.outcome}} == "failure" ]]; then exit 1; fi
+
+      - name: Terraform Apply
+        id: apply
+        if: github.event_name != 'pull_request'
+        run: terraform apply "t.tfplan"
