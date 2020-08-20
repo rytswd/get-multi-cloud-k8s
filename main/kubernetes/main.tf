@@ -13,6 +13,8 @@ module "networking" {
 }
 
 module "logging" {
+  count = var.enable_logging ? 1 : 0
+
   source = "./modules/logging"
   providers = {
     aws    = aws.v01
@@ -68,4 +70,22 @@ module "kubernetes" {
 
   enable_n1_preemptible_pool        = false
   enable_e2_shared_preemptible_pool = true
+}
+
+# ---
+
+module "admin_assumable_role" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
+  version = "2.18.0"
+
+  role_name = "admin"
+  role_path = "/"
+
+  create_role         = true
+  attach_admin_policy = true
+  role_requires_mfa   = false
+
+  trusted_role_arns = [
+    local.iam_account_arn,
+  ]
 }

@@ -1,4 +1,17 @@
 /* ----------------------------------------------------------------------------
+    Module Control
+------------------------------------------------------------------------------- */
+variable "enable_logging" {
+  default     = false
+  description = "Enable logging setup."
+}
+
+variable "enable_kubernetes" {
+  default     = true
+  description = "Enable Kubernetes setup."
+}
+
+/* ----------------------------------------------------------------------------
     AWS
 
       Quick Reference:
