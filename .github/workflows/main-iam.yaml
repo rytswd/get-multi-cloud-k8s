@@ -22,7 +22,7 @@ jobs:
       TF_VERSION: 0.13.0
     defaults:
       run:
-        working-directory: main/kubernetes
+        working-directory: main/iam
 
     steps:
       - uses: actions/checkout@v2
