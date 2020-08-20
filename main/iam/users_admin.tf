@@ -9,3 +9,7 @@ module "rytswd" {
     local.aws_v02_admin,
   ]
 }
+// Can be commented out once used
+output "rytswd_keybase_decrypt" {
+  value = module.rytswd.keybase_password_decrypt_command
+}
