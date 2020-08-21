@@ -1,5 +1,5 @@
 module "rytswd" {
-  source = "./admin"
+  source = "./modules/user"
 
   aws_username       = "rytswd"
   aws_keybase_userid = "rytswd"
