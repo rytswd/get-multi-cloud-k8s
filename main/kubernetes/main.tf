@@ -72,7 +72,7 @@ module "kubernetes" {
   enable_e2_shared_preemptible_pool = true
 }
 
-# ---
+# Roles
 
 module "admin_assumable_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
@@ -87,6 +87,29 @@ module "admin_assumable_role" {
   create_role         = true
   attach_admin_policy = true
   role_requires_mfa   = false
+
+  trusted_role_arns = [
+    local.aws_account_iam_arn,
+  ]
+}
+
+module "member_assumable_role" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
+  version = "2.18.0"
+  providers = {
+    aws = aws.v01
+  }
+
+  role_name = "member"
+  role_path = "/"
+
+  create_role       = true
+  role_requires_mfa = false
+
+  custom_role_policy_arns = [
+    "arn:aws:iam::aws:policy/AmazonCognitoReadOnly",
+    # "arn:aws:iam::aws:policy/AlexaForBusinessFullAccess",
+  ]
 
   trusted_role_arns = [
     local.aws_account_iam_arn,
