@@ -100,7 +100,7 @@ module "member_assumable_role" {
     aws = aws.v01
   }
 
-  role_name = "member"
+  role_name = "Member"
   role_path = "/"
 
   create_role       = true
