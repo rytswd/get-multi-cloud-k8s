@@ -15,7 +15,7 @@ resource "aws_iam_account_password_policy" "default" {
 
 module "admin_assumable_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "2.18.0"
+  version = "3.6.0"
 
   role_name = local.aws_admin_role_name
   role_path = "/"
@@ -31,7 +31,7 @@ module "admin_assumable_role" {
 
 module "member_assumable_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "2.18.0"
+  version = "3.6.0"
 
   role_name = "Member"
   role_path = "/"
