@@ -30,7 +30,7 @@ jobs:
         with:
           terraform_version: ${{ env.TF_VERSION }}
           cli_config_credentials_token: ${{ secrets.TERRAFORM_CLOUD_INIT_API_TOKEN }}
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      - uses: google-github-actions/setup-gcloud@master
         with:
           version: "latest"
           project_id: rytswd-get-multi-cloud-k8s-iam

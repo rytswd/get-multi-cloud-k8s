@@ -35,7 +35,7 @@ jobs:
         with:
           terraform_version: ${{ env.TF_VERSION }}
           cli_config_credentials_token: ${{ secrets.TERRAFORM_CLOUD_INIT_API_TOKEN }}
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      - uses: google-github-actions/setup-gcloud@master
         if: steps.comvent-destroy-all.outputs.comvent != ''
         with:
           version: "latest"

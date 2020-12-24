@@ -10,7 +10,7 @@
       is being monitored.
 ------------------------------------------------------------------------------- */
 locals {
-  aws_admin_role_name = "admin"
+  aws_admin_role_name = "Admin"
 }
 output "aws_admin_role_name" {
   value = local.aws_admin_role_name
