@@ -2,6 +2,9 @@ resource "google_container_cluster" "cluster" {
   name     = var.gcp_cluster_name
   location = var.gcp_region
 
+  release_channel {
+    channel = "RAPID"
+  }
   min_master_version = var.gcp_kubernetes_min_version
 
   # Remove default node pool immediately after
