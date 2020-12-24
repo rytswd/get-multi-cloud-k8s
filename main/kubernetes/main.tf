@@ -76,7 +76,7 @@ module "kubernetes" {
 
 module "admin_assumable_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "2.18.0"
+  version = "3.6.0"
   providers = {
     aws = aws.v01
   }
@@ -95,7 +95,7 @@ module "admin_assumable_role" {
 
 module "member_assumable_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "2.18.0"
+  version = "3.6.0"
   providers = {
     aws = aws.v01
   }
@@ -108,7 +108,6 @@ module "member_assumable_role" {
 
   custom_role_policy_arns = [
     "arn:aws:iam::aws:policy/AmazonCognitoReadOnly",
-    # "arn:aws:iam::aws:policy/AlexaForBusinessFullAccess",
   ]
 
   trusted_role_arns = [

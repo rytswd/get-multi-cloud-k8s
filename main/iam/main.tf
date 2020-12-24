@@ -24,9 +24,9 @@ module "admin_assumable_role" {
   attach_admin_policy = true
   role_requires_mfa   = false
 
-  #   trusted_role_arns = [
-  #     local.aws_account_iam_arn,
-  #   ]
+  trusted_role_arns = [
+    local.aws_account_iam_arn,
+  ]
 }
 
 module "member_assumable_role" {
@@ -41,10 +41,9 @@ module "member_assumable_role" {
 
   custom_role_policy_arns = [
     "arn:aws:iam::aws:policy/AmazonCognitoReadOnly",
-    # "arn:aws:iam::aws:policy/AlexaForBusinessFullAccess",
   ]
 
-  #   trusted_role_arns = [
-  #     local.aws_account_iam_arn,
-  #   ]
+  trusted_role_arns = [
+    local.aws_account_iam_arn,
+  ]
 }
