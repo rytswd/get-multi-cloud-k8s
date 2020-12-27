@@ -11,6 +11,10 @@ resource "google_container_cluster" "cluster" {
   network    = var.gcp_vpc
   subnetwork = var.gcp_subnet
 
+  release_channel {
+    channel = "RAPID"
+  }
+
   ip_allocation_policy {
     cluster_ipv4_cidr_block  = var.gcp_pod_ip_cidr
     services_ipv4_cidr_block = var.gcp_svc_ip_cidr
