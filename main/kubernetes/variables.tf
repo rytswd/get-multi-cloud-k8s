@@ -28,7 +28,7 @@ locals {
   aws_assumed_role    = "arn:aws:iam::${data.terraform_remote_state.init.outputs.aws_account_iam_id}:role/OrganizationAccountAccessRole"
   aws_admin_role_name = data.terraform_remote_state.init.outputs.aws_admin_role_name
 
-  aws_account_iam_arn = "arn:aws:iam::${data.terraform_remote_state.init.outputs.aws_account_iam_id}:user/*"
+  aws_account_iam_arn = "arn:aws:iam::${data.terraform_remote_state.init.outputs.aws_account_iam_id}:root"
 
   aws_iam_admin = "arn:aws:iam::${data.terraform_remote_state.init.outputs.aws_account_iam_id}:role/${local.aws_admin_role_name}"
   aws_v01_admin = "arn:aws:iam::${data.terraform_remote_state.init.outputs.aws_v01_account_id}:role/${local.aws_admin_role_name}"
