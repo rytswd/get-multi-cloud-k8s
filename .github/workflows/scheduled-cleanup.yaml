@@ -23,6 +23,14 @@ jobs:
     #       # - staging
 
     steps:
+      - name: Get date
+        run: |
+          echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Echo env date
+        run: |
+          echo "${{ env.current_date }}"
+
       - uses: actions/checkout@v2
       - uses: hashicorp/setup-terraform@v1
         with:
