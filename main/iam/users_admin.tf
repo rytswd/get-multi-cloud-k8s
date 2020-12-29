@@ -11,5 +11,5 @@ module "rytswd" {
 }
 // Can be commented out once used
 output "rytswd_keybase_decrypt" {
-  value = module.rytswd.keybase_password_decrypt_command
+  value = module.rytswd.user_keybase_pgp
 }
