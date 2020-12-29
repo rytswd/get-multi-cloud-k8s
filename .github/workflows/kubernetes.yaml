@@ -7,7 +7,7 @@ on:
       - main/kubernetes/**
   push:
     branches:
-      - master
+      - main
     paths:
       - .github/workflows/kubernetes.yaml
       - main/kubernetes/**

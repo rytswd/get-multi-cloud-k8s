@@ -7,7 +7,7 @@ on:
       - main/iam/**
   push:
     branches:
-      - master
+      - main
     paths:
       - .github/workflows/main-iam.yaml
       - main/iam/**
