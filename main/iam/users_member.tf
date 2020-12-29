@@ -9,6 +9,6 @@ module "some_member" {
   ]
 }
 // Can be commented out once used
-output "some_mmeber_keybase_decrypt" {
+output "some_member_keybase_decrypt" {
   value = module.some_member.keybase_password_decrypt_command
 }
