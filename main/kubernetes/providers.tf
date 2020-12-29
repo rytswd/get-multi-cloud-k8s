@@ -3,7 +3,7 @@ provider "aws" {
   alias  = "v01"
 
   assume_role {
-    role_arn = local.aws_account_role
+    role_arn = local.v1_aws_assumed_role
   }
 }
 

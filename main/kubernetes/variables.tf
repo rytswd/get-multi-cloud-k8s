@@ -51,11 +51,6 @@ variable "aws_region" {
   default = "eu-west-2"
 }
 
-variable "aws_account" {
-  description = "AWS Account ID in 12 digit representation."
-  default     = "953930786689"
-}
-
 variable "aws_cidr" {
   default = "10.22.0.0/16"
 }
@@ -94,8 +89,9 @@ variable "gcp_svc_ip_cidr" {
 ------------------------------------------------------------------------------- */
 
 locals {
-  # Given Terraform IAM account is created at root account, it can assume a
-  # role called "OrganizationAccountAccessRole", which is automatically created
-  # in a new AWS account.
-  aws_account_role = "arn:aws:iam::${var.aws_account}:role/OrganizationAccountAccessRole"
+  # Given Terraform IAM user is created at root account, it can assume a orole
+  # called "OrganizationAccountAccessRole", which is automatically created in a
+  # new AWS account.
+  v1_aws_assumed_role = "arn:aws:iam::${data.terraform_remote_state.init.outputs.aws_v01_account_id}:role/OrganizationAccountAccessRole"
+  v2_aws_assumed_role = "arn:aws:iam::${data.terraform_remote_state.init.outputs.aws_v02_account_id}:role/OrganizationAccountAccessRole"
 }
