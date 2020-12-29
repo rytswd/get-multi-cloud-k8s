@@ -10,5 +10,5 @@ module "some_tester" {
 }
 // Can be commented out once used
 output "some_tester_keybase_decrypt" {
-  value = module.some_tester.keybase_password_decrypt_command
+  value = module.some_tester.user_keybase_decrypt
 }
