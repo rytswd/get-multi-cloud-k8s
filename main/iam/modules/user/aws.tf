@@ -3,7 +3,7 @@ module "aws_user" {
   version = "2.18.0"
 
   name    = var.aws_username
-  pgp_key = var.aws_keybase_userid != "" ? "keybase:${var.aws_keybase_userid}" : var.aws_pgp_key
+  pgp_key = "keybase:${var.aws_keybase_userid}"
 
   force_destroy           = true
   password_reset_required = true
