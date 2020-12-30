@@ -3,7 +3,7 @@ module "aws_user" {
   version = "2.18.0"
 
   name    = var.aws_username
-  pgp_key = "keybase:${var.aws_keybase_userid}"
+  pgp_key = var.aws_keybase_userid != "" ? "keybase:${var.aws_keybase_userid}" : var.aws_pgp_key
 
   force_destroy           = true
   password_reset_required = true
@@ -19,13 +19,4 @@ resource "aws_iam_user_policy" "user" {
   name   = "AssumeRoleFor_${var.aws_username}"
   user   = module.aws_user.this_iam_user_name
   policy = data.aws_iam_policy_document.user.json
-}
-
-// Can be commented out once used
-output "user_keybase_decrypt" {
-  value = module.aws_user.keybase_password_decrypt_command
-}
-
-output "user_keybase_pgp" {
-  value = module.aws_user.keybase_password_pgp_message
 }
