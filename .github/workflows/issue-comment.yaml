@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Handle with Comvent
-        uses: rytswd/comvent@v0.2.0
+        uses: rytswd/comvent@latest
         id: comvent
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
