@@ -1,0 +1,16 @@
+---
+version: 0.2.0
+
+trigger: specific
+
+users:
+  active:
+    - rytswd
+
+keywords:
+  - name: terraform-destroy-all
+    value: '^\/terraform-destroy-all$'
+  - name: terraform-plan-only
+    value: '^\/terraform-plan-only$'
+  - name: terraform-plan-and-apply
+    value: '^\/terraform-plan-and-apply$'
