@@ -30,7 +30,7 @@ jobs:
         id: comvent
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          config-path: ../../github/comvent-chatbot.yaml
+          config-path: ../../.github/comvent-chatbot.yaml
 
       #* ---------------------------------------------------------------------- *#
 
