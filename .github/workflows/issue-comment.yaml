@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Handle with Comvent
-        uses: rytswd/comvent@v0.2
+        uses: rytswd/comvent@v0.3
         id: comvent
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -35,23 +35,14 @@ jobs:
       #* ---------------------------------------------------------------------- *#
 
       - uses: actions/checkout@v2
-        if: >
-          steps.comvent.outputs.terraform-destroy-all != '' 
-          || steps.comvent.outputs.terraform-plan-and-apply != ''
-          || steps.comvent.outputs.terraform-plan-only != ''
+        if: steps.comvent.outputs.comvent-found-any-match != ''
       - uses: hashicorp/setup-terraform@v1
-        if: >
-          steps.comvent.outputs.terraform-destroy-all != '' 
-          || steps.comvent.outputs.terraform-plan-and-apply != ''
-          || steps.comvent.outputs.terraform-plan-only != ''
+        if: steps.comvent.outputs.comvent-found-any-match != ''
         with:
           terraform_version: ${{ env.TF_VERSION }}
           cli_config_credentials_token: ${{ secrets.TERRAFORM_CLOUD_INIT_API_TOKEN }}
       - uses: google-github-actions/setup-gcloud@master
-        if: >
-          steps.comvent.outputs.terraform-destroy-all != '' 
-          || steps.comvent.outputs.terraform-plan-and-apply != ''
-          || steps.comvent.outputs.terraform-plan-only != ''
+        if: steps.comvent.outputs.comvent-found-any-match != ''
         with:
           version: "latest"
           project_id: rytswd-get-multi-cloud-k8s-v01
@@ -59,10 +50,7 @@ jobs:
           export_default_credentials: true
 
       - name: Terraform Init
-        if: >
-          steps.comvent.outputs.terraform-destroy-all != '' 
-          || steps.comvent.outputs.terraform-plan-and-apply != ''
-          || steps.comvent.outputs.terraform-plan-only != ''
+        if: steps.comvent.outputs.comvent-found-any-match != ''
         # env:
         #   TF_WORKSPACE: ${{ matrix.workspace }}
         run: terraform init
