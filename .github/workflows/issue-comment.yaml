@@ -100,7 +100,7 @@ jobs:
 
             </details>
 
-            *Pusher: @${{ github.actor }}*`;
+            *Triggered by: @${{ github.actor }}*`;
 
             github.issues.createComment({
               issue_number: context.issue.number,
