@@ -2,8 +2,8 @@ name: Terraform Destroy with Schedule
 
 on:
   schedule:
-    # - cron: "0 0 * * *" # Every day midnight
-    - cron: "*/30 * * * *" # Every 30 min
+    - cron: "0 0 * * *" # Every day midnight
+    # - cron: "*/30 * * * *" # Every 30 min
 
 jobs:
   terraform-destroy:
