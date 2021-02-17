@@ -101,4 +101,4 @@ jobs:
         if: steps.comvent.outputs.terraform-plan-and-apply != ''
         # env:
         #   TF_WORKSPACE: ${{ matrix.workspace }}
-        run: terraform apply "t.tfplan" -auto-approve
+        run: terraform apply -auto-approve "t.tfplan"
