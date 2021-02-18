@@ -64,7 +64,7 @@ module "kubernetes" {
   gcp_subnet = module.networking.gcp_subnet
 
   gcp_cluster_name           = "kubernetes-v01-gke"
-  gcp_kubernetes_min_version = "1.18.12-gke.1200"
+  gcp_kubernetes_min_version = "1.18.12-gke.1210"
   gcp_pod_ip_cidr            = var.gcp_pod_ip_cidr
   gcp_svc_ip_cidr            = var.gcp_svc_ip_cidr
 
